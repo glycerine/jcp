@@ -80,14 +80,14 @@ Either location can have a `host:` prefix (but not both).
 
 If `<to>` is omitted then we assume the current directory.
 
-Example to copy the remote directory to the local directory:
+Example: to copy the remote directory to the local directory:
 ~~~
 me@local $ jcp remote:
 ~~~
 
-Example to copy the local directory to the remote:
+Example: to copy the local directory `send_this_dir` to the remote:
 ~~~
-me@local $ jcp . remote:
+me@local $ jcp send_this_dir remote:
 ~~~
 
 A progress bar will report on the transfer and give an ETA.

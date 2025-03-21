@@ -4,7 +4,7 @@ jcp: an rsync-like filesystem sync Go library/CLI
 `jcp` in Go, doing parallel file scanning and syncing, 
 can be up to 3x faster than regular rsync (a single threaded C program).
 
-`jcp` is an rsync-like library and command line tool written Go. 
+`jcp` is an rsync-like library and command line tool written in Go. 
 Like rsync, it uses a Content-Defined-Chunking (CDC) algorithm,
 as they have become known in the literature,
 to efficiently transfer only the diffs between filesystems.

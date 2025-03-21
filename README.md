@@ -76,6 +76,8 @@ Example:
 me@local $ jcp remote:
 ~~~
 
+A progress bar will report on the transfer and give an ETA.
+
 jcp flag reference
 ------------------
 

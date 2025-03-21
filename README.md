@@ -71,12 +71,26 @@ Either location can have a `host:` prefix (but not both).
 
 If `<to>` is omitted then we assume the current directory.
 
-Example:
+Example to copy the remote directory to the local directory:
 ~~~
 me@local $ jcp remote:
 ~~~
 
+Example to copy the local directory to the remote:
+~~~
+me@local $ jcp . remote:
+~~~
+
 A progress bar will report on the transfer and give an ETA.
+
+verifying your transfer
+-----------------------
+Fast cryptographic checksums are automatically used to verify
+the transfer. If you want to 
+double-check it yourself, you can use my
+`b3` tool: https://github.com/glycerine/b3 which
+does parallel and hardware accelerated Blake3 
+cryptographic hashing of whole file systems.
 
 jcp flag reference
 ------------------

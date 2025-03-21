@@ -2,6 +2,11 @@ jcp: an rsync-like filesystem sync Go library/CLI
 ============================
 
 `jcp` is an rsync-like library and command line tool written Go. 
+Like rsync, it uses a Content-Defined-Chunking (CDC) algorithm,
+as it has become known in the literature,
+to efficiently transfer the diffs between filesystems.
+Currently a parallelized version of the FastCDC 
+algorithm with a Gear table is used [1] [2].
 
 The library, in `jcp/jsync` is the main thing. The command line `jcp`
 is mostly there to test it, but it can be used
@@ -160,6 +165,12 @@ $ jsrv -h
   -v	verbose debugging compression settings per message
 $ 
 ~~~
+
+references
+----------
+[1] https://joshleeb.com/posts/fastcdc.html
+
+[2] https://www.usenix.org/conference/atc16/technical-sessions/presentation/xia
 
 -----
 Author: Jason E. Aten, Ph.D.

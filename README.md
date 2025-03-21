@@ -65,11 +65,11 @@ keep things simple.
 step 2: run the client, jcp
 -------------
 
-On the local box, run jcp <from> <to> to transfer directories/files.
+On the local box, run `jcp <from> <to>` to transfer directories/files.
 
 Either location can have a `host:` prefix (but not both).
 
-If <to> is omitted then we assume the current directory.
+If `<to>` is omitted then we assume the current directory.
 
 Example:
 ~~~

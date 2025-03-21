@@ -450,8 +450,16 @@ func ScanDirTreeOnePass(
 				//vv("not valid, breaking, ok = %v", ok)
 				break
 			}
-			f.Path = f.Path[pre:] // trim off giverRoot
-			//vv("leafdir = '%v'", leafdir)
+			if f.Path[:pre] == giverRoot {
+				//vv("trimming off giver root, pre=%v (giverRoot='%v'); f.Path '%v' -> '%v'", pre, giverRoot, f.Path, f.Path[pre:])
+				f.Path = f.Path[pre:] // trim off giverRoot
+				//vv("leafdir = '%v'", leafdir)
+			} else {
+				// jcp of . taker gets here, we were
+				// corrupting the output of walk on such paths
+				// by trimming them. So don't. I think
+				// paths were just shorter.
+			}
 
 			f.Serial = nextSerial
 			nextSerial++

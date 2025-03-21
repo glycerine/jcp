@@ -1,4 +1,4 @@
-jcp: Jason's rsync-like copy
+jcp: an rsync-like filesystem sync Go library/CLI
 ============================
 
 `jcp` is an rsync-like library and command line tool written Go. 

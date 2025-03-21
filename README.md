@@ -59,7 +59,7 @@ you want to receive files into (or send files from).
 me@remote ~/remote_backup_dir $ jsrv
 ~~~
 You might want to `nohup jsrv &> ~/logs/log.jsrv &` but for 
-keep things simple.
+now we keep things simple.
 
 
 step 2: run the client, jcp

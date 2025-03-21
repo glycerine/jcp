@@ -21,7 +21,7 @@ standalone against the `jsrv` server program.
 
 `jcp` was written to harden and polish my RPC system, https://github.com/glycerine/rpc25519 ,
 whose high-performance and novel Peer/Circuit/Fragment
-paradigm is featured here. In this new style
+paradigm is featured here. In this evolution
 of RPC, peers communicate fragments of infinite 
 data streams over any number of persistent circuits. Since
 the roles are peer-to-peer rather than client-server,

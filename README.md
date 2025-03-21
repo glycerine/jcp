@@ -19,8 +19,7 @@ The library, in `jcp/jsync` is the main thing here.
 The command line `jcp` is mostly there to test it, but it can be used
 standalone against the `jsrv` server program.
 
-`jcp` was written to harden my RPC system, 
-https://github.com/glycerine/rpc25519 ,
+`jcp` was written to harden my RPC system, https://github.com/glycerine/rpc25519 ,
 whose features and high-performance are leveraged.
 
 installation

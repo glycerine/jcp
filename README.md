@@ -1,7 +1,7 @@
 jcp: Jason's rsync-like copy
 ============================
 
-`jcp` is an rsync clone in pure Go.
+`jcp` is an rsync-like library and command line tool written Go. 
 
 It is up to 3x faster than regular C rsync.
 

@@ -20,7 +20,14 @@ The command line `jcp` is mostly there to test it, but it can be used
 standalone against the `jsrv` server program.
 
 `jcp` was written to harden and polish my RPC system, https://github.com/glycerine/rpc25519 ,
-whose high-performance is featured here.
+whose high-performance and novel Peer/Circuit/Fragment
+paradigm is featured here. In this new style
+of RPC, peers communicate fragments of infinite 
+data streams over any number of persistent circuits. Since
+the roles are peer-to-peer rather than client-server,
+either end can run the code for any service
+(as here, in the jcp case, either end can give or take a
+filesystem update).
 
 installation
 ------------

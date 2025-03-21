@@ -403,7 +403,7 @@ func ChunkFile2(
 			curjob.cuts = []int{0}
 		}
 		if false {
-			vv("here are candidates: jobs[%v].cand = '%#v'", i, jobs[i].cand)
+			//vv("here are candidates: jobs[%v].cand = '%#v'", i, jobs[i].cand)
 			prev := 0
 			for _, cut := range jobs[i].cand {
 				fmt.Printf("%v (%v)\n", cut, cut-prev)

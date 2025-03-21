@@ -89,6 +89,7 @@ func (c *jsyncU) Close() {
 func (s *jsyncU) PullToFrom(toLocalPath, fromRemotePath string) (dataBytesMoved int, err error) {
 
 	t0 := time.Now()
+	_ = t0
 	cli := s.rsyncd.U
 
 	var req *RequestToSyncPath
@@ -140,9 +141,9 @@ func (s *jsyncU) PullToFrom(toLocalPath, fromRemotePath string) (dataBytesMoved 
 
 			UpdateProgress: make(chan *ProgressUpdate, 100),
 		}
-		vv("PullToFrom using ToRemoteNetAddr: '%v'", req.ToRemoteNetAddr)
+		//vv("PullToFrom using ToRemoteNetAddr: '%v'", req.ToRemoteNetAddr)
 	} else {
-		vv("PullToFrom: such toLocalPath at the moment, toLocalPath='%v'", toLocalPath)
+		//vv("PullToFrom: such toLocalPath at the moment, toLocalPath='%v'", toLocalPath)
 
 		cwd, err := os.Getwd()
 		panicOn(err)
@@ -168,7 +169,7 @@ func (s *jsyncU) PullToFrom(toLocalPath, fromRemotePath string) (dataBytesMoved 
 		}
 	}
 
-	vv("PullToFrom about to send on reqs chan")
+	//vv("PullToFrom about to send on reqs chan")
 	s.reqs <- req
 jobDone:
 	for {
@@ -182,7 +183,7 @@ jobDone:
 		}
 	}
 
-	vv("PullToFrom pulled toLocalPath '%v' in '%v'", toLocalPath, time.Since(t0))
+	//vv("PullToFrom pulled toLocalPath '%v' in '%v'", toLocalPath, time.Since(t0))
 
 	if req.Errs != "" {
 		alwaysPrintf("req.Err: '%v'", req.Errs)
@@ -197,15 +198,16 @@ jobDone:
 func (s *jsyncU) PushFromTo(fromLocalPath, toRemotePath string) (dataBytesMoved int, err error) {
 
 	t0 := time.Now()
+	_ = t0
 	//path := *rsyncPath
 
 	cli := s.rsyncd.U
 
-	vv("jsyncU.PushFromTo(): fromLocalPath='%v', toRemotePath='%v'", fromLocalPath, toRemotePath)
-	vv(" dirExists(fromLocalPath) = '%v'", dirExists(fromLocalPath))
-	vv("fileExists(fromLocalPath) = '%v'", fileExists(fromLocalPath))
-	vv(" dirExists(toRemotePath)  = '%v'", dirExists(toRemotePath))
-	vv("fileExists(toRemotePath)  = '%v'", fileExists(toRemotePath))
+	//vv("jsyncU.PushFromTo(): fromLocalPath='%v', toRemotePath='%v'", fromLocalPath, toRemotePath)
+	//vv(" dirExists(fromLocalPath) = '%v'", dirExists(fromLocalPath))
+	//vv("fileExists(fromLocalPath) = '%v'", fileExists(fromLocalPath))
+	//vv(" dirExists(toRemotePath)  = '%v'", dirExists(toRemotePath))
+	//vv("fileExists(toRemotePath)  = '%v'", fileExists(toRemotePath))
 
 	if dirExists(fromLocalPath) {
 		// ok: we will dir sync
@@ -255,7 +257,7 @@ func (s *jsyncU) PushFromTo(fromLocalPath, toRemotePath string) (dataBytesMoved 
 		//Precis: precis,
 		//Chunks: chunks,
 	}
-	vv("PushFromTo req using ToRemoteNetAddr: '%v'. push (remote takes) = %v", req.ToRemoteNetAddr, req.RemoteTakes)
+	//vv("PushFromTo req using ToRemoteNetAddr: '%v'. push (remote takes) = %v", req.ToRemoteNetAddr, req.RemoteTakes)
 
 	//lpb, ctx, canc, err := RunRsyncReader(s.cfg, cli, "jsync_client", true, reqs)
 	//panicOn(err)
@@ -263,7 +265,7 @@ func (s *jsyncU) PushFromTo(fromLocalPath, toRemotePath string) (dataBytesMoved 
 	//defer canc()
 	//_ = ctx
 
-	vv("PushFromTo about to send on reqs chan")
+	//vv("PushFromTo about to send on reqs chan")
 	s.reqs <- req
 
 jobDone:
@@ -278,7 +280,7 @@ jobDone:
 		}
 	}
 
-	vv("PushFromTo push fromLocalPath '%v' -> '%v' in %v: err='%v'", fromLocalPath, toRemotePath, time.Since(t0), req.Errs)
+	//vv("PushFromTo push fromLocalPath '%v' -> '%v' in %v: err='%v'", fromLocalPath, toRemotePath, time.Since(t0), req.Errs)
 
 	if req.Errs != "" {
 		return 0, fmt.Errorf("%v", req.Errs)
@@ -289,7 +291,7 @@ jobDone:
 func (s *jsyncU) DirPushFromTo(fromLocalDir, toRemoteDir string, cli rpc.UniversalCliSrv) (err error) {
 
 	t0 := time.Now()
-
+	_ = t0
 	cwd, err := os.Getwd()
 	panicOn(err)
 
@@ -317,7 +319,7 @@ func (s *jsyncU) DirPushFromTo(fromLocalDir, toRemoteDir string, cli rpc.Univers
 
 		UpdateProgress: make(chan *ProgressUpdate, 100),
 	}
-	vv("PushFromTo req using ToRemoteNetAddr: '%v'. push (remote takes) = %v", req.ToRemoteNetAddr, req.RemoteTakes)
+	//vv("PushFromTo req using ToRemoteNetAddr: '%v'. push (remote takes) = %v", req.ToRemoteNetAddr, req.RemoteTakes)
 
 	//lpb, ctx, canc, err := RunRsyncReader(s.cfg, cli, "jsync_client", true, reqs)
 	//panicOn(err)
@@ -325,7 +327,7 @@ func (s *jsyncU) DirPushFromTo(fromLocalDir, toRemoteDir string, cli rpc.Univers
 	//defer canc()
 	//_ = ctx
 
-	vv("DirPushFromTo about to send on reqs chan: '%#v'", req)
+	//vv("DirPushFromTo about to send on reqs chan: '%#v'", req)
 	s.reqs <- req
 jobDone:
 	for {
@@ -339,7 +341,7 @@ jobDone:
 	}
 	//<-req.Done.Chan
 
-	vv("DirPushFromTo push fromLocalDir '%v' -> '%v' in %v: err='%v'", fromLocalDir, toRemoteDir, time.Since(t0), req.Errs)
+	//vv("DirPushFromTo push fromLocalDir '%v' -> '%v' in %v: err='%v'", fromLocalDir, toRemoteDir, time.Since(t0), req.Errs)
 
 	if req.Errs != "" {
 		return fmt.Errorf("%v", req.Errs)

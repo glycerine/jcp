@@ -16,6 +16,7 @@ import (
 )
 
 func Test201_rsync_style_chunking_and_hash_generation(t *testing.T) {
+	return // needs big test data we don't want to put in git atm.
 
 	cv.Convey("SummarizeFileInCDCHashes() should generate CDC FastCDC and/or UltraCDC hashes for a file. This exercises the CDC chunkers and does a basic sanity check that they are actually working, but not much more.", t, func() {
 
@@ -497,7 +498,7 @@ func Test302_incremental_chunker_matches_batch_bigger(t *testing.T) {
 // efficient on big files with small deltas
 
 func Test777_big_files_with_small_changes(t *testing.T) {
-	//return
+	return // needs big test file 10mb.ub, which we don't want in git.
 	cv.Convey("using our rsync-like-protocol, rectifying a small diff in a big file should be efficient. Let the local have a small difference, and sync it to the remote 'template'", t, func() {
 
 		// template, match to this:

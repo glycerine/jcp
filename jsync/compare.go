@@ -71,7 +71,7 @@ func listFilesUnderDir(root string, includeRoot bool, requiredSuffix string) (fi
 			//vv("short path='%v'; len=%v", path, len(path))
 		} else {
 			if info == nil {
-				vv("info was nil for path = '%v'", path)
+				//vv("info was nil for path = '%v'", path)
 			}
 			if info.IsDir() {
 				// skip directories.

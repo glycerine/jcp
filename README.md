@@ -25,9 +25,9 @@ paradigm is featured here. In this new style
 of RPC, peers communicate fragments of infinite 
 data streams over any number of persistent circuits. Since
 the roles are peer-to-peer rather than client-server,
-either end can run the code for any service
+any peer can run the code for any service
 (as here, in the jcp case, either end can give or take a
-filesystem update).
+stream of filesystem updates).
 
 installation
 ------------

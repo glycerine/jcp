@@ -10,8 +10,8 @@ standalone against the `jsrv` server program.
 It is up to 3x faster than regular C rsync.
 
 `jcp` was written to harden my RPC system, 
-`https://github.com/glycerine/rpc25519`,
-whose features and performance are leveraged.
+https://github.com/glycerine/rpc25519 ,
+whose features and high-performance are leveraged.
 
 installation
 ------------

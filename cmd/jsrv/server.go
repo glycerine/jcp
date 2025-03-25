@@ -41,7 +41,7 @@ func noticeControlC() {
 
 func main() {
 
-	rpc25519.Exit1IfVersionReq()
+	rsync.Exit1IfVersionReq()
 
 	fmt.Printf("%v", rpc25519.GetCodeVersion("srv"))
 

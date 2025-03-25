@@ -85,7 +85,7 @@ func (c *JcopyConfig) SetDefaults() {
 }
 
 func main() {
-	rpc.Exit1IfVersionReq()
+	rsync.Exit1IfVersionReq()
 
 	//fmt.Printf("%v", rpc.GetCodeVersion("jcp"))
 

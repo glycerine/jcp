@@ -57,6 +57,11 @@ for testing).
 ~~~
 me@local ~ $ selfy -k george -e george@example.com -nopass
 ~~~
+..._but_ the default cert name expected by the tools is `node`, 
+so, for now, do this instead to minimize the flags we pass later:
+~~~
+me@local ~ $ selfy -k node -e george@example.com -nopass
+~~~
 
 Then distribute your certs and CA public key to the
 remote host.

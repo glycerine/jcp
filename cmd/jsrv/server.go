@@ -95,7 +95,13 @@ func main() {
 
 	var serialNotParallel = flag.Bool("serial", false, "serial single threaded file chunking, rather than parallel. Mostly for benchmarking")
 
+	var cryptoff = flag.Bool("cryptoff", false, "turn off encryption (alias for -tcp=true -quic=false)")
 	flag.Parse()
+
+	if *cryptoff {
+		*tcp = true
+		*quic = false
+	}
 
 	rsync.SetParallelChunking(!*serialNotParallel)
 

@@ -151,7 +151,7 @@ func main() {
 	takerExistsLocal := false
 	giverExistsLocal := false
 	cfg := rpc.NewConfig()
-	cfg.TCPonly_no_TLS = c.Cryptoff
+	cfg.TCPonly_no_TLS = jcfg.Cryptoff
 
 	serverOn := false
 	_ = serverOn

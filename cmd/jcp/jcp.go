@@ -42,6 +42,7 @@ type JcopyConfig struct {
 
 	CompressAlgo string
 	Dry          bool
+	Cryptoff     bool
 }
 
 // backup plan if :7070 was not available...
@@ -74,7 +75,7 @@ func (c *JcopyConfig) SetFlags(fs *flag.FlagSet) {
 	fs.StringVar(&c.Memprofile, "memprof", "", "file to write memory profile 30 sec worth to")
 	fs.BoolVar(&c.SerialNotParallel, "serial", false, "serial single threaded file chunking, rather than parallel. Mostly for benchmarking")
 	fs.StringVar(&c.CompressAlgo, "compress", "s2", "compression algo. other choices: none, s2, lz4, zstd:01, zstd:03, zstd:07, zstd:11")
-
+	fs.BoolVar(&c.Cryptoff, "cryptoff", false, "turn off encryption")
 }
 
 func (c *JcopyConfig) FinishConfig(fs *flag.FlagSet) (err error) {
@@ -150,6 +151,7 @@ func main() {
 	takerExistsLocal := false
 	giverExistsLocal := false
 	cfg := rpc.NewConfig()
+	cfg.TCPonly_no_TLS = c.Cryptoff
 
 	serverOn := false
 	_ = serverOn
@@ -182,6 +184,7 @@ func main() {
 		if len(splt2) <= 1 {
 			fmt.Printf("no ':' in src/target: starting local rsync server to receive files...\n")
 			cfg.ServerAddr = "127.0.0.1:0"
+			cfg.TCPonly_no_TLS = true
 			srv := rpc.NewServer("srv_rsync_jcp", cfg)
 			serverAddr, err := srv.Start()
 			panicOn(err)

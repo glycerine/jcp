@@ -113,6 +113,58 @@ double-check it yourself, you can use my
 does parallel and hardware accelerated Blake3 
 cryptographic hashing of whole file systems.
 
+local-to-local efficient backups?
+----------------------
+
+Question: can `jcp` efficiently update incremental backups from 
+primary to secondary local storage, e.g. daily backup of a 
+home dir to an attached memory stick or an alternate folder on the same filesystem?
+
+Answer: `jcp` can and does copy local-to-local disk, but it is missing
+the obvious optimization of skipping the network stack in this case.
+
+It might still be fast (enough) for your purposes. You
+would have to benchmark it to see. See below for demonstration. 
+
+It is pretty convenient to try local-to-local, because when 
+jcp detects it is doing a local disk-to-local disk transfer, 
+it starts the receiver for you (the jsrv part is run in-process,
+on a goroutine). It already did this for testing convenience,
+but now (I added this small feature in response to this question)
+it also automatically turns off the encryption+decryption part of the
+transport, since there's no point in wasting cycles doing
+encryption just to decrypt it a moment later so it can be written
+to disk unencrypted.  
+
+More broadly, `jcp` certainly doesn't aim to provide encrypted
+backups. That is a much bigger lift, and there are alot of
+specialized backup programs out there that do that already (e.g. plakar.io).
+
+Demonstration:
+
+~~~
+~/go/src/github.com/glycerine/jcp (master) $ jcp src target
+
+no ':' in src/target: starting local rsync server to receive files...
+
+(001)version.go                [==============================] 100%  684.0 B     38.3 MB/s   00:00 ETA
+
+jcp.go:474 [pid 9073] 2025-03-29 09:20:47.705 -0500 CDT giver total file sizes: 43_651_011
+
+jcp.go:475 [pid 9073] 2025-03-29 09:20:47.705 -0500 CDT bytes read = 53_715 ; bytes sent = 12_412_130 (out of 43_651_011). (28.4%) ratio: 3.5x speedup
+
+~/go/src/github.com/glycerine/jcp (master) $ jcp src target
+
+no ':' in src/target: starting local rsync server to receive files...
+
+jcp.go:474 [pid 9300] 2025-03-29 09:21:18.856 -0500 CDT giver total file sizes: 43_649_411
+
+jcp.go:475 [pid 9300] 2025-03-29 09:21:18.856 -0500 CDT bytes read = 693 ; bytes sent = 8_491 (out of 43_649_411). (0.0%) ratio: 5140.7x speedup
+
+~/go/src/github.com/glycerine/jcp (master) $
+~~~
+
+
 jcp flag reference
 ------------------
 
